@@ -15,4 +15,4 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb+srv://judcsaura:C9uXq3ceIuvL7wXZ@cluster0.cjisb.mongodb.net/cafe';
 }
 // urlDB = 'mongodb+srv://judcsaura:C9uXq3ceIuvL7wXZ@cluster0.cjisb.mongodb.net/cafe';
-// process.env.URLDB = urlDB;
+process.env.URLDB = urlDB;
