@@ -12,8 +12,6 @@ let urlDB;
 if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/cafe-cursonode';
 } else {
-    // urlDB = 'mongodb+srv://judcsaura:C9uXq3ceIuvL7wXZ@cluster0.cjisb.mongodb.net/cafe';
-    urlDB = 'mongodb+srv://judith2:Not33SinThem34@cluster0.cjisb.mongodb.net/cafe';
+    urlDB = process.env.MONGO_URL; // ir a tips.js - VARIABLES ENTORNO MONGO para explicación de esta línea
 }
-// comentario de a ver si va ya esta puta mierda
 process.env.URLDB = urlDB;
