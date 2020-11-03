@@ -2,53 +2,35 @@ require('./config/config'); // archivo de configuración
 
 
 const express = require('express');
+
+//! Conexión con mongo
+const mongoose = require('mongoose');
+// import mongoose from 'mongoose';
+
 const app = express();
 
 //! START npm boy-parser -> procesar datos
 const bodyParser = require('body-parser');
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
 app.use(bodyParser.json());
-//! END npm boy-parser
 
-app.get('/', function(req, res) {
-    res.json('Hello World');
-});
+//! Requerir las rutas del usuario
+app.use(require('./routes/usuario'));
 
-app.get('/usuario', function(req, res) {
 
-    res.json('get usuario');
-});
 
-app.post('/usuario', function(req, res) {
 
-    let body = req.body; // del body parser
+//! Conexión a la base de datos
+mongoose.connect(process.env.URLDB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+}, (err, res) => {
+    if (err) throw err
 
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: "el nombre no está"
-        });
-    } else {
-        res.json({
-            nombre: body.nombre,
-            edad: body.edad
-        });
-    }
-});
+    console.log('base de datos online');
 
-app.put('/usuario/:id', function(req, res) {
-    let id = req.params.id;
-
-    res.json({
-        id
-    });
-
-});
-
-app.delete('/usuario', function(req, res) {
-    res.json('delete usuario')
 });
 
 
