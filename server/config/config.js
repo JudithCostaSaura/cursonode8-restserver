@@ -14,5 +14,5 @@ if (process.env.NODE_ENV === 'dev') {
 } else {
     urlDB = 'mongodb+srv://judcsaura:C9uXq3ceIuvL7wXZ@cluster0.cjisb.mongodb.net/cafe';
 }
-
+// comentario de a ver si va ya esta puta mierda
 process.env.URLDB = urlDB;
