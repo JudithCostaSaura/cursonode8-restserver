@@ -14,8 +14,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//! Requerir las rutas del usuario
-app.use(require('./routes/usuario'));
+//! Requerir las rutas  ->  viene del index
+app.use(require('./routes/index'));
 
 
 

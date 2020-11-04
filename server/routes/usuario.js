@@ -1,8 +1,14 @@
+//? === Constantes requeridos ===
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const app = express();
 const Usuario = require('../models/usuario');
+const { verificaToken, verificaAdminRole } = require('../middlewares/autenticacion');
+
+
+
 
 //? === Rutas ===
 
@@ -10,7 +16,12 @@ app.get('/', function(req, res) {
     res.json('Hello World');
 });
 
-app.get('/usuario', function(req, res) {
+/* verificaToken es un middleware: indica el middleware que se va a disparar cuando se acceda a esta ruta */
+app.get('/usuario', verificaToken, (req, res) => {
+
+    /* res.json({
+        nombre: req.usuarioData.nombre
+    }); */
 
     // {estado: true}
 
@@ -44,7 +55,11 @@ app.get('/usuario', function(req, res) {
 
 });
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificaToken, verificaAdminRole], (req, res) => {
+
+    /* res.json({
+        nombre: req.usuarioData.nombre
+    }); */
 
     let body = req.body; // Obtenemos la información del POST con body parser
 
@@ -76,7 +91,7 @@ app.post('/usuario', function(req, res) {
 
 
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
     let id = req.params.id;
 
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'estado']); // pick para escoger lo que quiero: del req.body se coge lo que hay en el array
@@ -98,7 +113,7 @@ app.put('/usuario/:id', function(req, res) {
     });
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
     let id = req.params.id;
 
     let cambiarEstado = { estado: false }

@@ -15,3 +15,12 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = process.env.MONGO_URL; // ir a tips.js - VARIABLES ENTORNO MONGO para explicación de esta línea
 }
 process.env.URLDB = urlDB;
+
+
+// Para el archivo: login.js
+//? =========== FECHA EXPIRACIÓN =============
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+
+//? =========== SEED DE AUTENTICACIÓN =============
+process.env.SEED_TOKEN = process.env.SEED_TOKEN || 'seed-desarrollo'; // la primera está declarada en heroku
