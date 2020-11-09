@@ -13,7 +13,7 @@ const { verificaToken, verificaAdminRole } = require('../middlewares/autenticaci
 //? === Rutas ===
 
 app.get('/', function(req, res) {
-    res.json('Hello World');
+    res.json('Este es el / de usuario');
 });
 
 /* verificaToken es un middleware: indica el middleware que se va a disparar cuando se acceda a esta ruta */
@@ -74,7 +74,7 @@ app.post('/usuario', [verificaToken, verificaAdminRole], (req, res) => {
 
     usuario.save((err, usuarioDB) => {
         if (err) {
-            return res.status(400).json({
+            return res.status(500).json({
                 ok: false,
                 err
             });

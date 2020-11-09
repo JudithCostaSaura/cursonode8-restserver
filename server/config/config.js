@@ -19,8 +19,12 @@ process.env.URLDB = urlDB;
 
 // Para el archivo: login.js
 //? =========== FECHA EXPIRACIÓN =============
-process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+process.env.CADUCIDAD_TOKEN = '48h';
 
 
 //? =========== SEED DE AUTENTICACIÓN =============
 process.env.SEED_TOKEN = process.env.SEED_TOKEN || 'seed-desarrollo'; // la primera está declarada en heroku
+
+
+//? =========== GOOGLE CLIENT =============
+process.env.GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '823955592897-2anb6nkol773u6uoduv6ccsuholqq4c6.apps.googleusercontent.com';
